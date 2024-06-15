@@ -25,28 +25,35 @@ export default function setupServer() {
   app.use(express.json());
 
   app.get('/contacts', async (_, res) => {
-    const contacts = await getAllContacts();
-    res.status(200).json({
-      message: "Successfully found contacts!",
-      data: contacts,
-    });
+    try {
+      const contacts = await getAllContacts();
+      res.status(200).json({
+        message: 'Successfully found contacts!',
+        data: contacts,
+      });
+    } catch {
+      next();
+    }
   });
 
-  app.get('/contacts/:studentId', async (req, res) => {
-    const { studentId } = req.params;
-    const contact = await getContacById(studentId);
+  app.get('/contacts/:contactId', async (req, res, next) => {
+    try {
+      const { contactId } = req.params;
 
-    if (!contact) {
-      res.status(404).json({
-        message: 'Contact not found',
+      if (!contact) {
+        res.status(404).json({
+          message: 'Contact not found',
+        });
+        return;
+      }
+
+      res.status(200).json({
+        message: `Successfully found contact with id ${contactId}!`,
+        data: contact,
       });
-      return;
+    } catch {
+      next();
     }
-
-    res.status(200).json({
-      message: `Successfully found contact with id ${contactId}!`,
-      data: contact,
-    });
   });
 
   app.use('*', (_, res) => {
