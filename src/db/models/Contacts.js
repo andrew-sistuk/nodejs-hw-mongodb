@@ -24,7 +24,7 @@ const schemaContacts = new Schema(
       enum: ['work', 'home', 'personal'],
       required: true,
       default: 'personal',
-    },
+    }
   },
   {
     timestamps: true,

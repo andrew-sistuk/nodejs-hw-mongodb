@@ -26,7 +26,6 @@ export default function setupServer() {
 
   app.get('/contacts', async (_, res) => {
     const contacts = await getAllContacts();
-
     res.status(200).json({
       message: "Successfully found contacts!",
       data: contacts,
