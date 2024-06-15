@@ -40,6 +40,8 @@ export default function setupServer() {
     try {
       const { contactId } = req.params;
 
+      const contact = await getContacById(contactId);
+
       if (!contact) {
         res.status(404).json({
           message: 'Contact not found',
