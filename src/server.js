@@ -45,7 +45,7 @@ export default function setupServer() {
 
       if (!contact) {
         res.status(404).json({
-          status: 400,
+          status: 404,
           message: 'Contact not found',
         });
         return;
