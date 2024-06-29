@@ -26,7 +26,7 @@ export default function setupServer() {
 
   app.use(express.json());
 
-  app.use(routerContacts);
+  app.use('/contacts',routerContacts);
 
   app.use('*', notFoundHandler);
 
