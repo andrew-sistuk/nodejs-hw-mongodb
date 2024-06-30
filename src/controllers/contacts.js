@@ -1,4 +1,10 @@
-import { addContact, getAllContacts, getContacById } from '../services/contacts.js';
+import {
+  addContact,
+  deleteContact,
+  getAllContacts,
+  getContacById,
+  upsertContact,
+} from '../services/contacts.js';
 
 import createHttpError from 'http-errors';
 
@@ -48,14 +54,14 @@ export const deleteContactController = async (req, res, next) => {
     return;
   }
 
-  res.status(204);
+  res.status(204).json({});
 };
 
 export const upsertContactsController = async (req, res) => {
   const { contactId } = req.params;
-  console.log('------------------------------'+JSON.stringify(req.body));
+  console.log('------------------------------' + JSON.stringify(req.body));
 
-  const result = await upsertContact(contactId, req.body);
+  const result = await upsertContact({ _id: contactId }, req.body);
 
   if (!result) {
     next(createHttpError(404, 'Contact not found'));
@@ -67,8 +73,6 @@ export const upsertContactsController = async (req, res) => {
   res.status(status).json({
     status: 200,
     message: 'Successfully patched a contact!',
-    data: result.contact
+    data: result.contact,
   });
 };
-
-
