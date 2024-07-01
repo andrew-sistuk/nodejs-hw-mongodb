@@ -7,6 +7,7 @@ export const errorHandler = (err, _, res, next) => {
       data: err,
     });
   }
+  
   res.status(500).json({
     status: 500,
     message: 'Something went wrong',

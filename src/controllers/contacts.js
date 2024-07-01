@@ -44,7 +44,7 @@ export const addContactController = async (req, res) => {
   });
 };
 
-// export const upsertContactController = async (req, res) => {
+// export const upsertContactController = async (req, res, next) => {
 //   const { contactId } = req.params;
 
 //   const result = await upsertContact({ _id: contactId }, req.body, {
@@ -65,7 +65,7 @@ export const addContactController = async (req, res) => {
 //   });
 // };
 
-export const patchContactController = async (req, res) => {
+export const patchContactController = async (req, res, next) => {
   const { contactId } = req.params;
 
   const result = await upsertContact({ _id: contactId }, req.body);
