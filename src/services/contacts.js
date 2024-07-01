@@ -17,15 +17,13 @@ export const deleteContact = async id => {
   return contact;
 };
 
+//працює і для put і для patch
 export const upsertContact = async (filter, data, options = {}) => {
   const rawContact = await ContactsCollection.findOneAndUpdate(filter, data, {
     new: true,
-    upsert: true,
     includeResultMetadata: true,
     ...options,
   });
-
-  console.log('**************************' + rawContact);
 
   if (!rawContact || !rawContact.value) return null;
 
