@@ -1,4 +1,7 @@
 import { model, Schema } from 'mongoose';
+import { emailRegex, typeContactList } from '../../constants/contacts.js';
+import { mongooseSaveError } from './hooks.js';
+
 
 const schemaContacts = new Schema(
   {
@@ -12,6 +15,8 @@ const schemaContacts = new Schema(
     },
     email: {
       type: String,
+      unique: true,
+      match: [emailRegex,"Please enter a valid email address"]
     },
 
     isFavourite: {
@@ -20,14 +25,16 @@ const schemaContacts = new Schema(
     },
     contactType: {
       type: String,
-      enum: ['work', 'home', 'personal'],
+      enum: typeContactList,
       default: 'personal',
-    }
+    },
   },
   {
     timestamps: true,
     versionKey: false,
   }
 );
+
+schemaContacts.post('save', mongooseSaveError);
 
 export const ContactsCollection = model('contacts', schemaContacts);
