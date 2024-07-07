@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { typeContactList } from '../constants/contacts.js';
 
-export const contactsSchemaPost = Joi.object({
+export const contactsSchemaAdd = Joi.object({
   name: Joi.string().min(3).max(20).required().messages({
     'string.base': 'Field {#label} should be a string',
     'string.min': 'Field {#label} should have at least {#limit} characters',
@@ -35,7 +35,7 @@ export const contactsSchemaPost = Joi.object({
   }),
 });
 
-export const contactsSchemaPatch = Joi.object({
+export const contactsSchemaUpdate = Joi.object({
     name: Joi.string().min(3).max(20).messages({
       'string.base': 'Field {#label} should be a string',
       'string.min': 'Field {#label} should have at least {#limit} characters',

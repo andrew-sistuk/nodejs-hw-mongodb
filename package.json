@@ -24,6 +24,8 @@
   },
   "description": "",
   "devDependencies": {
+    "eslint": "^9.6.0",
+    "globals": "^15.8.0",
     "pino-pretty": "^11.2.1"
   }
 }
