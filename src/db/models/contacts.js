@@ -37,7 +37,7 @@ const schemaContacts = new Schema(
 
 schemaContacts.post('save', mongooseSaveError);
 
-schemaContacts.pre('findOneAndUpdate', setUpdateSettings)
+schemaContacts.pre('findOneAndUpdate', setUpdateSettings);
 
 schemaContacts.post('findOneAndUpdate', mongooseSaveError);
 

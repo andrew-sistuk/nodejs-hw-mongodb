@@ -1,3 +1,4 @@
+import { isValidId } from '../middlewares/isValidId.js';
 import {
   addContact,
   deleteContact,
@@ -18,7 +19,10 @@ export const getContactsController = async (_, res) => {
 };
 
 export const getContactByIDController = async (req, res, next) => {
+
   const { contactId } = req.params;
+
+  // isValidId(req, res, next);
 
   const contact = await getContacById(contactId);
 
