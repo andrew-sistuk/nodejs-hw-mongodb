@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { typeContactList } from '../constants/contacts.js';
 
 export const contactsSchemaPost = Joi.object({
   name: Joi.string().min(3).max(20).required().messages({
@@ -26,11 +27,11 @@ export const contactsSchemaPost = Joi.object({
   isFavourite: Joi.boolean().messages({
     'boolean.base': 'Field {#label} should be a string',
   }),
-  contactType: Joi.string().min(3).max(20).valid('work', 'home', 'personal').messages({
+  contactType: Joi.string().min(3).max(20).valid(...typeContactList).messages({
     'string.base': 'Field {#label} should be a string',
     'string.min': 'Field {#label} should have at least {#limit} characters',
     'string.max': 'Field {#label} should have at most {#limit} characters',
-    'any.only': 'Field {#label} should be one of this list [work, home, personal]',
+    'any.only': `Field {#label} should be one from this list [${typeContactList}]`,
   }),
 });
 
@@ -58,10 +59,10 @@ export const contactsSchemaPatch = Joi.object({
     isFavourite: Joi.boolean().messages({
       'boolean.base': 'Field {#label} should be a string',
     }),
-    contactType: Joi.string().min(3).max(20).valid('work', 'home', 'personal').messages({
+    contactType: Joi.string().min(3).max(20).valid(...typeContactList).messages({
       'string.base': 'Field {#label} should be a string',
       'string.min': 'Field {#label} should have at least {#limit} characters',
       'string.max': 'Field {#label} should have at most {#limit} characters',
-      'any.only': 'Field {#label} should be one of this list [work, home, personal]',
+      'any.only': `Field {#label} should be one from this list [${typeContactList}]`,
     }),
   });
