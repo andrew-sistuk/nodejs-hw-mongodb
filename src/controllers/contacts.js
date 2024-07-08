@@ -1,4 +1,3 @@
-import { isValidId } from '../middlewares/isValidId.js';
 import {
   addContact,
   deleteContact,
@@ -8,9 +7,11 @@ import {
 } from '../services/contacts.js';
 
 import createHttpError from 'http-errors';
+import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 
-export const getContactsController = async (_, res) => {
-  const contacts = await getAllContacts();
+export const getContactsController = async (req, res) => {
+  const contacts = await getAllContacts(parsePaginationParams(req.query));
+
   res.status(200).json({
     status: 200,
     message: 'Successfully found contacts!',
