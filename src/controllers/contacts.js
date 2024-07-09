@@ -8,9 +8,15 @@ import {
 
 import createHttpError from 'http-errors';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
+import { parseSortParams } from '../utils/parseSortParams.js';
+import { parseFilterParams } from '../utils/parseFilterParams.js';
 
-export const getContactsController = async (req, res) => {
-  const contacts = await getAllContacts(parsePaginationParams(req.query));
+export const getContactsController = async ({ query }, res) => {
+  const contacts = await getAllContacts({
+    ...parsePaginationParams(query),
+    ...parseSortParams(query),
+    filter: parseFilterParams(query),
+  });
 
   res.status(200).json({
     status: 200,
@@ -20,7 +26,6 @@ export const getContactsController = async (req, res) => {
 };
 
 export const getContactByIDController = async (req, res, next) => {
-
   const { contactId } = req.params;
 
   // isValidId(req, res, next);

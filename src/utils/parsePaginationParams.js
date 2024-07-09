@@ -1,3 +1,5 @@
+import { DEFAULT_PAGE, DEFAULT_PERPAGE } from '../constants/contacts.js';
+
 const parseNumber = (number, defaultNumber) => {
   if (typeof number !== 'string') return defaultNumber;
 
@@ -10,7 +12,7 @@ const parseNumber = (number, defaultNumber) => {
 
 export const parsePaginationParams = query => {
   return {
-    page: parseNumber(query.page, 1),
-    perPage: parseNumber(query.perPage, 10),
+    page: parseNumber(query.page, DEFAULT_PAGE),
+    perPage: parseNumber(query.perPage, DEFAULT_PERPAGE),
   };
 };

@@ -2,7 +2,6 @@ import { model, Schema } from 'mongoose';
 import { emailRegex, typeContactList } from '../../constants/contacts.js';
 import { mongooseSaveError, setUpdateSettings } from './hooks.js';
 
-
 const schemaContacts = new Schema(
   {
     name: {
@@ -16,7 +15,7 @@ const schemaContacts = new Schema(
     email: {
       type: String,
       unique: true,
-      match: [emailRegex,"Please enter a valid email address"]
+      match: [emailRegex, 'Please enter a valid email address'],
     },
 
     isFavourite: {
