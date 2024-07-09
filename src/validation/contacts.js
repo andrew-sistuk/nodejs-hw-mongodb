@@ -25,7 +25,7 @@ export const contactsSchemaAdd = Joi.object({
       'string.max': 'Field {#label} should have at most {#limit} characters',
     }),
   isFavourite: Joi.boolean().messages({
-    'boolean.base': 'Field {#label} should be a string',
+    'boolean.base': 'Field {#label} should be a bool',
   }),
   contactType: Joi.string()
     .min(3)
@@ -61,7 +61,7 @@ export const contactsSchemaUpdate = Joi.object({
       'string.max': 'Field {#label} should have at most {#limit} characters',
     }),
   isFavourite: Joi.boolean().messages({
-    'boolean.base': 'Field {#label} should be a string',
+    'boolean.base': 'Field {#label} should be a bool',
   }),
   contactType: Joi.string()
     .min(3)
