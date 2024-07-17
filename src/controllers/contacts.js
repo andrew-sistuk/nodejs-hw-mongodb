@@ -28,8 +28,6 @@ export const getContactsController = async ({ query }, res) => {
 export const getContactByIDController = async (req, res, next) => {
   const { contactId } = req.params;
 
-  // isValidId(req, res, next);
-
   const contact = await getContacById(contactId);
 
   if (!contact) {
