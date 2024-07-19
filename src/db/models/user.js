@@ -1,5 +1,6 @@
 import { model, Schema } from 'mongoose';
 import { emailRegex } from '../../constants/contacts.js';
+import { mongooseSaveError, setUpdateSettings } from './hooks.js';
 
 const userSchema = new Schema(
   {
@@ -23,5 +24,11 @@ const userSchema = new Schema(
     versionKey: false,
   }
 );
+
+userSchema.post('save', mongooseSaveError);
+
+userSchema.pre('findOneAndUpdate', setUpdateSettings);
+
+userSchema.post('findOneAndUpdate', mongooseSaveError);
 
 export const UsersCollection = model('users', userSchema);
