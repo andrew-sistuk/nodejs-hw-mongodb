@@ -25,7 +25,7 @@ export const validationUserSignUp = Joi.object({
   }),
 });
 
-export const validationUserSignUpSignIn = Joi.object({
+export const validationUserSignIn = Joi.object({
   email: Joi.string()
     .min(3)
     .max(20)
@@ -37,10 +37,9 @@ export const validationUserSignUpSignIn = Joi.object({
       'string.min': 'Field {#label} should have at least {#limit} characters',
       'string.max': 'Field {#label} should have at most {#limit} characters',
     }),
-  password: Joi.string().min(8).max(32).required().messages({
+  password: Joi.string().min(8).required().messages({
     'string.base': 'Field {#label} should be a string',
     'string.min': 'Field {#label} should have at least {#limit} characters',
-    'string.max': 'Field {#label} should have at most {#limit} characters',
     'any.required': 'Field {#label} is required',
   }),
 });
