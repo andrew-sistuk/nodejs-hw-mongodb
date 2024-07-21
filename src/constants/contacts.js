@@ -23,3 +23,6 @@ export const DEFAULT_FILTER = {};
 export const typeContactList = ['work', 'home', 'personal'];
 
 export const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export const FIFTEEN_MINUTES = 15 * 60 * 1000;
+export const MONTH = 30 * 24 * 60 * 60 * 1000;

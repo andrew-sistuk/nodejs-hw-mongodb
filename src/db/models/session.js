@@ -4,6 +4,7 @@ import { mongooseSaveError, setUpdateSettings } from './hooks.js';
 const schemaSession = new Schema({
   userId: {
     type: String,
+    ref: 'users',
     required: true,
   },
   accessToken: {
