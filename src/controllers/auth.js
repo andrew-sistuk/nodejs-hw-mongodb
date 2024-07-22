@@ -1,5 +1,6 @@
 import { MONTH } from '../constants/contacts.js';
 import { loginUser, logoutUser, refreshUsersSession, registerUser } from '../services/auth.js';
+import { setupSession } from '../utils/setupSession.js';
 
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
@@ -11,21 +12,10 @@ export const registerUserController = async (req, res) => {
   });
 };
 
-const setupSession = (res, { refreshToken, _id }) => {
-  res.cookie('refreshToken', refreshToken, {
-    httpOnly: true,
-    expires: new Date(Date.now() + MONTH),
-  });
-  res.cookie('sessionId', _id, {
-    httpOnly: true,
-    expires: new Date(Date.now() + MONTH),
-  });
-};
-
 export const loginUserController = async (req, res) => {
   const { accessToken, refreshToken, _id } = await loginUser(req.body);
 
-  setupSession(res, { refreshToken, _id });
+  setupSession(res, { refreshToken, _id }, MONTH);
 
   res.json({
     status: 200,
@@ -42,7 +32,7 @@ export const refreshUserSessionController = async (req, res) => {
     refreshToken: req.cookies.refreshToken,
   });
 
-  setupSession(res, session);
+  setupSession(res, session, MONTH);
 
   res.json({
     status: 200,
