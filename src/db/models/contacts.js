@@ -17,7 +17,6 @@ const schemaContacts = new Schema(
       unique: true,
       match: [emailRegex, 'Please enter a valid email address'],
     },
-
     isFavourite: {
       type: Boolean,
       default: false,
@@ -26,6 +25,11 @@ const schemaContacts = new Schema(
       type: String,
       enum: typeContactList,
       default: 'personal',
+    },
+    userId: {
+      type: String,
+      ref: 'users',
+      required: true,
     },
   },
   {

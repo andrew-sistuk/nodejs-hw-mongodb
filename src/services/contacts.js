@@ -20,6 +20,10 @@ export const getAllContacts = async ({
 
   const contactsQuery = ContactsCollection.find();
 
+  if (filter.userId) {
+    contactsQuery.where('userId').equals(filter.userId);
+  }
+
   if (filter.contactType) {
     contactsQuery.where('contactType').equals(filter.contactType);
   }
@@ -45,16 +49,17 @@ export const getAllContacts = async ({
   };
 };
 
-export const getContacById = async id => {
-  return await ContactsCollection.findById(id);
+export const getContacById = async filter => {
+  console.log(filter);
+  return await ContactsCollection.findOne(filter);
 };
 
 export const addContact = async payload => {
   return await ContactsCollection.create(payload);
 };
 
-export const deleteContact = async id => {
-  const contact = await ContactsCollection.findOneAndDelete({ _id: id });
+export const deleteContact = async filter => {
+  const contact = await ContactsCollection.findOneAndDelete(filter);
   return contact;
 };
 
