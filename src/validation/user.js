@@ -43,3 +43,17 @@ export const validationUserSignIn = Joi.object({
     'any.required': 'Field {#label} is required',
   }),
 });
+
+export const requestResetEmailSchema = Joi.object({
+  email: Joi.string()
+    .min(3)
+    .max(20)
+    .required()
+    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+    .messages({
+      'string.base': 'Field {#label} should be a string',
+      'string.email': 'Field {#label} should be like this "*@*.*"',
+      'string.min': 'Field {#label} should have at least {#limit} characters',
+      'string.max': 'Field {#label} should have at most {#limit} characters',
+    }),
+});
