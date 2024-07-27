@@ -29,7 +29,13 @@ router.post(
   ctrlWrapper(addContactController)
 );
 
-// router.put('/:contactId', upload.single('photo'), isValidId, validateBody(contactsSchemaUpdate), ctrlWrapper(upsertContactController));
+// router.put(
+//   '/:contactId',
+//   upload.single('photo'),
+//   isValidId,
+//   validateBody(contactsSchemaUpdate),
+//   ctrlWrapper(upsertContactController)
+// );
 
 router.patch(
   '/:contactId',
