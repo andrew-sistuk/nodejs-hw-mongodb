@@ -14,7 +14,6 @@ const schemaContacts = new Schema(
     },
     email: {
       type: String,
-      unique: true,
       match: [emailRegex, 'Please enter a valid email address'],
     },
     isFavourite: {
